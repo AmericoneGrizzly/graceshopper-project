@@ -9,3 +9,5 @@ const Cart = db.define('cart', {
 });
 
 module.exports = Cart;
+
+// updated cart.js >> Cart.js
