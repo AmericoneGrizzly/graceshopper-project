@@ -17,11 +17,13 @@ class AllProducts extends Component {
         <h1>This is the AllProducts component</h1>
         {this.props.products.map((product) => (
           <div key={product.id}>
-            <div>
-              <img src={product.imageURL} alt="picture of soda" />
-            </div>
-            <h3>{product.name}</h3>
-            <h1>{product.price}</h1>
+            <Link to={`/products/${product.id}`}>
+              <div>
+                <img src={product.imageURL} alt="picture of soda" />
+              </div>
+              <h3>{product.name}</h3>
+              <h1>${product.price}</h1>
+            </Link>
           </div>
         ))}
       </div>
