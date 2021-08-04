@@ -3,7 +3,7 @@ import axios from "axios";
 const SET_PRODUCTS = "SET_PRODUCTS";
 
 const initialState = {
-  products: ["somethingbroke"],
+  products: [],
 };
 
 const setProducts = (products) => ({
