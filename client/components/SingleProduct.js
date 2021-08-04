@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { getSingleProduct } from './store/allProductsReducer';
+import { getSingleProduct } from '../store/allProductsReducer';
 
 class SingleProduct extends Component {
   // constructor() {

@@ -4,7 +4,7 @@ const SET_PRODUCTS = 'SET_PRODUCTS';
 const SET_PRODUCT = 'SET_PRODUCT';
 
 const initialState = {
-  products: ['somethingbroke'],
+  products: [],
   singleProduct: {},
 };
 
