@@ -1,15 +1,12 @@
 const router = require('express').Router();
 const {
-  models: { User },
+  models: { User, Cart },
 } = require('../db');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
       attributes: ['id', 'username'],
     });
     res.json(users);
@@ -19,6 +16,21 @@ router.get('/', async (req, res, next) => {
 });
 
 router.put("/:id", async (req, res, next) => {
-  const currentUser = await User.findByPk(req.params.id);
-  await currentUser.addProduct(req.body.product.id, { through: {quantity: req.body.quantityChange}});
+  try{
+    const currentUser = await User.findByPk(req.params.id);
+    const productInCart = await Cart.findAll({where: {
+      userId: req.params.id,
+      productId: req.body.product.id,
+    }})
+    if(!productInCart.length) {
+      await currentUser.addProduct(req.body.product.id, { through: {quantity: req.body.quantityChange}});
+    } else {
+      const newQuantity = productInCart[0].quantity + req.body.quantityChange;
+      await productInCart[0].update({
+        quantity: newQuantity,
+      });
+    }
+  } catch(err) {
+    console.log(err);
+  }
 });

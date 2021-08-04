@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { fetchProducts } from './store/allProductsReducer';
-import { updateCartThunk } from './store/cartReducer';
+import { fetchProducts } from '../store/allProductsReducer';
+import { updateCartThunk } from '../store/cartReducer';
 
 class AllProducts extends Component {
   constructor (props) {
