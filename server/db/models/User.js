@@ -11,21 +11,15 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-  },
-  password: {
-    type: Sequelize.STRING,
-  },
-  email: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false,
     validate: {
       isEmail: true,
     },
   },
+  password: {
+    type: Sequelize.STRING,
+  },
   address: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
   role: {
     type: Sequelize.ENUM('CUSTOMER', 'ADMINISTRATOR'),
