@@ -6,6 +6,14 @@ const Order = db.define("order", {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
+  purchasePrice: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
+  type: {
+    type: Sequelize.ENUM("active", "wishlist", "previous"),
+    defaultValue: "active",
+  },
 });
 
 module.exports = Order;

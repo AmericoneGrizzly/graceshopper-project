@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Product },
+  models: { User, Product, Order },
 } = require('../server/db');
 
 const Users = [
@@ -81,7 +81,7 @@ const Users = [
 const Products = [
   {
     name: 'Red Bull',
-    price: '3.99',
+    price: '399',
     quantity: 1000,
     category: 'HIGH_CALORIE',
     imageURL:
@@ -89,7 +89,7 @@ const Products = [
   },
   {
     name: 'Monster',
-    price: '2.99',
+    price: '299',
     quantity: 1000,
     category: 'HIGH_CALORIE',
     imageURL:
@@ -97,7 +97,7 @@ const Products = [
   },
   {
     name: 'Bang',
-    price: '3.99',
+    price: '399',
     quantity: 1000,
     category: 'LOW_CALORIE',
     imageURL:
@@ -105,7 +105,7 @@ const Products = [
   },
   {
     name: 'Reign',
-    price: '2.99',
+    price: '299',
     quantity: 1000,
     category: 'LOW_CALORIE',
     imageURL:
@@ -113,7 +113,7 @@ const Products = [
   },
   {
     name: 'Coke Energy',
-    price: '1.99',
+    price: '199',
     quantity: 1000,
     category: 'HIGH_CALORIE',
     imageURL:
@@ -121,7 +121,7 @@ const Products = [
   },
   {
     name: 'Redline Xtreme',
-    price: '3.49',
+    price: '349',
     quantity: 1000,
     category: 'LETHAL',
     imageURL:
@@ -129,7 +129,7 @@ const Products = [
   },
   {
     name: 'Spike Hardcore Energy',
-    price: '3.79',
+    price: '379',
     quantity: 1000,
     category: 'LETHAL',
     imageURL:
@@ -137,7 +137,7 @@ const Products = [
   },
   {
     name: 'NOS',
-    price: '2.59',
+    price: '259',
     quantity: 1000,
     category: 'HIGH_CALORIE',
     imageURL:
@@ -145,7 +145,7 @@ const Products = [
   },
   {
     name: 'Rockstar Energy',
-    price: '2.59',
+    price: '259',
     quantity: 1000,
     category: 'HIGH_CALORIE',
     imageURL:
@@ -153,7 +153,7 @@ const Products = [
   },
   {
     name: '5 Hour Energy',
-    price: '2.49',
+    price: '249',
     quantity: 1000,
     category: 'HIGH_CALORIE',
     imageURL:
@@ -181,6 +181,18 @@ async function seed() {
         return Product.create(product);
       })
     );
+    const user1 = await User.findByPk(1);
+    console.log("user1: ", user1);
+    const order1 = await Order.create({
+      user: user1,
+    });
+    await order1.setUser(user1);
+    console.log("User: ", User);
+    const energyDrink1 = await Product.findByPk(1);
+    const energyDrink2 = await Product.findByPk(2);
+    await order1.addProduct(energyDrink1);
+    await order1.addProduct(energyDrink2);
+
 
     console.log(`seeded ${Users.length} users`);
     console.log(`seeded successfully`);
