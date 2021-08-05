@@ -1,13 +1,13 @@
-const router = require("express").Router();
+const router = require('express').Router();
 const {
   models: { User, Cart },
-} = require("../db");
+} = require('../db');
 module.exports = router;
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ["id", "username"],
+      attributes: ['id', 'username'],
     });
     res.json(users);
   } catch (err) {
@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const currentUser = await User.findByPk(req.params.id);
     const productInCart = await Cart.findAll({
@@ -39,7 +39,7 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const currentUser = await User.findByPk(req.params.id);
     res.send(await currentUser.getProducts());

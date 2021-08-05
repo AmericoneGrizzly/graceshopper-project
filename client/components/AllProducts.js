@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
-import { fetchProducts } from "../store/allProductsReducer";
-import { updateCartThunk } from "../store/cartReducer";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
+import { fetchProducts } from '../store/allProductsReducer';
+import { updateCartThunk } from '../store/cartReducer';
 
 class AllProducts extends Component {
   constructor(props) {
@@ -16,12 +16,12 @@ class AllProducts extends Component {
   }
 
   addProductToCart(product) {
-    console.log("product to be added: ", product);
+    console.log('product to be added: ', product);
     this.props.updateCart(this.props.user, product, 1);
   }
 
   render() {
-    console.log("these are my props: ", this.props);
+    console.log('these are my props: ', this.props);
     return (
       <div>
         <h1>This is the AllProducts component</h1>

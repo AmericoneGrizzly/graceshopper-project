@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-const UPDATE_CART = "UPDATE_CART";
-const GET_CART = "GET_CART";
+const UPDATE_CART = 'UPDATE_CART';
+const GET_CART = 'GET_CART';
 
 const updateCart = (user) => ({
   type: UPDATE_CART,
