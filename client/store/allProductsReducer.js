@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-const SET_PRODUCTS = 'SET_PRODUCTS';
-const SET_PRODUCT = 'SET_PRODUCT';
+const SET_PRODUCTS = "SET_PRODUCTS";
+const SET_PRODUCT = "SET_PRODUCT";
 
 const initialState = {
-  products: ['somethingbroke'],
+  products: [],
   singleProduct: {},
 };
 
@@ -32,7 +32,7 @@ export const getSingleProduct = (id) => {
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
-      const { data: products } = await axios.get('/api/products');
+      const { data: products } = await axios.get("/api/products");
       dispatch(setProducts(products));
     } catch (e) {
       console.log(e);

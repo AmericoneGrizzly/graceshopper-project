@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { fetchProducts } from "./store/allProductsReducer";
-import { updateCartThunk } from "./store/cartReducer";
+import { fetchProducts } from "../store/allProductsReducer";
+import { updateCartThunk } from "../store/cartReducer";
 
 class AllProducts extends Component {
   constructor(props) {
@@ -32,17 +32,17 @@ class AllProducts extends Component {
                 <img src={product.imageURL} alt="picture of soda" />
               </div>
               <h3>{product.name}</h3>
-              <h1>${product.price}</h1>
-              {this.props.isLoggedIn && (
-                <button
-                  type="button"
-                  id="add-product-button"
-                  onClick={() => this.addProductToCart(product)}
-                >
-                  Add To Cart
-                </button>
-              )}
+              <h1>{product.price}</h1>
             </Link>
+            {this.props.isLoggedIn && (
+              <button
+                type="button"
+                id="add-product-button"
+                onClick={() => this.addProductToCart(product)}
+              >
+                Add To Cart
+              </button>
+            )}
           </div>
         ))}
       </div>
