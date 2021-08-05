@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 // import { fetchProducts } from "./store/allProductsReducer";
-import { updateCartThunk } from "./store/cartReducer";
+import { getCartThunk } from "../store/cartReducer";
 
 class Cart extends Component {
   // constructor(props) {
@@ -13,7 +13,7 @@ class Cart extends Component {
   componentDidMount() {
     // fetch all products from db and setstate
     //this.props.getProducts();
-    //this.props.getCart();
+    this.props.getCart(this.props.user.id);
   }
 
   // addProductToCart(product) {
@@ -55,9 +55,9 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  getCart: () => dispatch(fetchCart()),
-  updateCart: (user, product, quantityChange) =>
-    dispatch(updateCartThunk(user, product, quantityChange)),
+  getCart: (id) => dispatch(getCartThunk(id)),
+  // updateCart: (user, product, quantityChange) =>
+  //   dispatch(updateCartThunk(user, product, quantityChange)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(Cart));
