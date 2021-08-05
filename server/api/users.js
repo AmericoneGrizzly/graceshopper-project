@@ -17,3 +17,8 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
+router.put("/:id", async (req, res, next) => {
+  const currentUser = await User.findByPk(req.params.id);
+  await currentUser.addProduct(req.body.product.id, { through: {quantity: req.body.quantityChange}});
+});
