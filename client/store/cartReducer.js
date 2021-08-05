@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Order } from '../../server/db';
 
 const UPDATE_CART = 'UPDATE_CART';
 const GET_CART = 'GET_CART';
@@ -25,11 +26,19 @@ export const getCartThunk = (id) => {
 export const updateCartThunk = (user, product, quantityChange) => {
   return async (dispatch) => {
     try {
-      const { data: updatedUser } = await axios.put(`/api/users/${user.id}`, {
-        product: product,
-        quantityChange: quantityChange,
-      });
-      dispatch(updateCart(updatedUser));
+      console.log('this is the user in the thunk', user);
+      if (!Object.keys(user).length) {
+        console.log('Hello from the if block');
+        window.localStorage.setItem('cart', 'hello world');
+        const msg = window.localStorage.getItem('cart');
+        console.log(msg);
+      } else {
+        const { data: updatedUser } = await axios.put(`/api/users/${user.id}`, {
+          product: product,
+          quantityChange: quantityChange,
+        });
+        dispatch(updateCart(updatedUser));
+      }
     } catch (e) {
       console.log(e);
     }

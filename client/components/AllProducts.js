@@ -34,15 +34,13 @@ class AllProducts extends Component {
               <h3>{product.name}</h3>
               <h1>{product.price}</h1>
             </Link>
-            {this.props.isLoggedIn && (
-              <button
-                type="button"
-                id="add-product-button"
-                onClick={() => this.addProductToCart(product)}
-              >
-                Add To Cart
-              </button>
-            )}
+            <button
+              type="button"
+              id="add-product-button"
+              onClick={() => this.addProductToCart(product)}
+            >
+              Add To Cart
+            </button>
           </div>
         ))}
       </div>
