@@ -5,7 +5,7 @@ import { fetchProducts } from '../store/allProductsReducer';
 import { updateCartThunk } from '../store/cartReducer';
 
 class AllProducts extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.addProductToCart = this.addProductToCart.bind(this);
   }
@@ -16,7 +16,7 @@ class AllProducts extends Component {
   }
 
   addProductToCart(product) {
-    console.log("product to be added: ", product);
+    console.log('product to be added: ', product);
     this.props.updateCart(this.props.user, product, 1);
   }
 
@@ -28,13 +28,21 @@ class AllProducts extends Component {
         {this.props.products.map((product) => (
           <div key={product.id}>
             <Link to={`/products/${product.id}`}>
-            <div>
-              <img src={product.imageURL} alt="picture of soda" />
-            </div>
-            <h3>{product.name}</h3>
-            <h1>{product.price}</h1>
+              <div>
+                <img src={product.imageURL} alt="picture of soda" />
+              </div>
+              <h3>{product.name}</h3>
+              <h1>{product.price}</h1>
             </Link>
-            {this.props.isLoggedIn && <button type="button" id="add-product-button" onClick={() => this.addProductToCart(product)}>Add To Cart</button>}
+            {this.props.isLoggedIn && (
+              <button
+                type="button"
+                id="add-product-button"
+                onClick={() => this.addProductToCart(product)}
+              >
+                Add To Cart
+              </button>
+            )}
           </div>
         ))}
       </div>
@@ -50,7 +58,8 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   getProducts: () => dispatch(fetchProducts()),
-  updateCart: (user, product, quantityChange) => dispatch(updateCartThunk(user, product, quantityChange))
+  updateCart: (user, product, quantityChange) =>
+    dispatch(updateCartThunk(user, product, quantityChange)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(AllProducts));
