@@ -183,13 +183,12 @@ async function seed() {
     );
     let user1 = await User.findByPk(1, { include: [{ model: Order }] });
 
-    const order1 = await Order.create({
-      user: user1,
-    });
+    const order1 = await Order.create();
     await order1.setUser(user1);
 
     const energyDrink1 = await Product.findByPk(1);
     const energyDrink2 = await Product.findByPk(2);
+
     await order1.addProduct(energyDrink1);
     await order1.addProduct(energyDrink2);
     user1 = await User.findByPk(1, { include: { model: Order } });
