@@ -6,6 +6,7 @@ import Home from "./Home";
 import { me } from "../store";
 import AllProducts from "./AllProducts";
 import SingleProduct from "./SingleProduct";
+import Cart from "./Cart";
 
 /**
  * COMPONENT
