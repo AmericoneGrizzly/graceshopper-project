@@ -16,7 +16,7 @@ const Product = db.define("product", {
     defaultValue: 0,
   },
   imageURL: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     defaultValue:
       "https://www.saashub.com/images/app/service_logos/16/1e550b6dd28e/large.png?1539661217",
   },
