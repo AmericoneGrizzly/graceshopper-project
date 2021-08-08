@@ -21,19 +21,26 @@ router.put("/:id", async (req, res, next) => {
       include: [
         {
           model: Order,
+          where: {
+            type: "active",
+          },
+          required: false,
           include: [Product],
         },
       ],
     });
-    console.log(`puppies.orders`, puppies.orders);
+    console.log(`puppies`, puppies);
     let currentOrder = {};
+    //TODO
+    //add logic to check for open/closed orders
     if (puppies.orders.length) {
-      console.log("truthy");
       currentOrder = puppies.orders[0];
+      console.log(`currentOrder`, currentOrder);
     } else {
-      console.log("No Order Found!");
-      currentOrder = await Order.create();
-      await currentOrder.setUser(puppies);
+      currentOrder = await Order.create({ userId: puppies.id });
+      console.log(`currentOrdernew`, currentOrder);
+
+      // await currentOrder.setUser(puppies);
     }
     // console.log("puppies", puppies.toJSON());
     //console.log("puppies", puppies);
@@ -49,12 +56,19 @@ router.get("/:id", async (req, res, next) => {
       include: [
         {
           model: Order,
+          where: {
+            type: "active",
+          },
           include: [Product],
         },
       ],
     });
     console.log(`currentUser`, currentUser);
-    res.send(await currentUser.orders[0].getProducts());
+    if (currentUser) {
+      res.send(await currentUser.orders[0].getProducts());
+    } else {
+      res.send();
+    }
   } catch (err) {
     console.log(err);
   }

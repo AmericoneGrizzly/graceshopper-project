@@ -35,6 +35,7 @@ class Cart extends Component {
                     <img src={item.imageURL} alt="picture of soda" />
                   </div>
                   <h3>{item.name}</h3>
+                  <h3>Qty: {item.cart.quantity}</h3>
                   <h1>${item.price}</h1>
                 </Link>
               </div>
