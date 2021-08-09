@@ -1,14 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-//import { _createRobot } from '../redux/robots';
+import React from "react";
+import { connect } from "react-redux";
+import history from "../history";
+import { _createdProduct } from "../store/allProductsReducer";
 
 class ProductForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      price: '',
-      category: '',
+      name: "",
+      price: "",
+      category: "HIGH_CALORIE",
     };
   }
 
@@ -20,11 +21,11 @@ class ProductForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.createRobot(this.state, this.props.history);
+    this.props.createProduct(this.state, this.props.history);
     this.setState({
-      name: '',
-      fuelType: '',
-      fuelLevel: 0,
+      name: "",
+      price: "",
+      category: "HIGH_CALORIE",
     });
   };
 
@@ -33,32 +34,32 @@ class ProductForm extends React.Component {
       <div id="container">
         <br />
         <br />
-        <h2>Add A New Robot?</h2>
+        <h2>Add A New Product?</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Robot Name:</label>
+          <label htmlFor="name">Product Name:</label>
           <input
             type="text"
             name="name"
             value={this.state.name}
             onChange={this.handleChange}
           />
-          <label htmlFor="fuelType">Choose A Fuel: </label>
+          <label htmlFor="price">Choose A Price: </label>
+          <input
+            type="text"
+            name="price"
+            value={this.state.price}
+            onChange={this.handleChange}
+          />
+          <label htmlFor="category">Caffeine Type:</label>
           <select
             onChange={this.handleChange}
             value={this.state.fuelType}
-            name="fuelType"
+            name="category"
           >
-            <option value="electric">Electric</option>
-            <option value="diesel">Diesel</option>
-            <option value="gas">Gas</option>
+            <option value="LETHAL">Lethal</option>
+            <option value="LOW_CALORIE">Low_Calorie</option>
+            <option value="HIGH_CALORIE">High_Calorie</option>
           </select>
-          <label htmlFor="fuelLevel">Fuel Level:</label>
-          <input
-            type="text"
-            name="fuelLevel"
-            value={this.state.fuelLevel}
-            onChange={this.handleChange}
-          />
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -67,7 +68,7 @@ class ProductForm extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, history) => ({
-  createRobot: (robot) => dispatch(_createRobot(robot, history)),
+  createProduct: (product) => dispatch(_createdProduct(product, history)),
 });
 
-export default connect(null, mapDispatchToProps)(RobotForm);
+export default connect(null, mapDispatchToProps)(ProductForm);

@@ -160,3 +160,12 @@ a:visited {
   position: absolute;
   top: 200px;
 }
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label{
+  margin: 8px;
+}
