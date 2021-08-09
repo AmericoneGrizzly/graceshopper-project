@@ -127,8 +127,17 @@ a:visited {
   color: #de9151;
 }
 
-#all-products video {
+/* #all-products video {
   width: 100%;
+} */
+
+#all-products {
+  position: absolute;
+  top: 85px;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #add-product-button:hover {
