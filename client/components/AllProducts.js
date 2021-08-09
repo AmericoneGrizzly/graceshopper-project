@@ -14,7 +14,7 @@ class AllProducts extends Component {
     // fetch all products from db and setstate
     this.props.getProducts();
   }
-
+  
   addProductToCart(product) {
     console.log("product to be added: ", product);
     this.props.updateCart(this.props.user, product, 1);
@@ -23,8 +23,57 @@ class AllProducts extends Component {
   render() {
     console.log("these are my props: ", this.props);
     return (
-      <div id="all-products">
+      <div>
+      {Object.keys(this.props.user).length && this.props.user.role === "ADMINISTRATOR" ? (
+        <div id="all-products">
         <video
+        className="pp-video-player"
+        src="https://hype.com/wp-content/uploads//2019/10/191029-MFP-Video-Website-No-sound-2560x1080-2-gradients-Compressed-30.mp4"
+        autoplay=""
+        webkit-playsinline=""
+        playsinline=""
+        loop=""
+        muted="muted"
+        controlslist="nodownload"
+        poster=""
+        preload="none"
+      ></video>
+      {this.props.products.map((product) => (
+        <div key={product.id} className="single-product">
+          <div>
+            <Link to={`/products/${product.id}`}>
+              <img
+                src={product.imageURL}
+                alt="picture of soda"
+                className="can-img"
+              />
+              <h3 className="product-name">{product.name}</h3>
+            </Link>
+          </div>
+          <h1>${product.price}</h1>
+          {this.props.isLoggedIn && (
+            <div className="Buttons">
+            <button
+              type="button"
+              id="add-product-button"
+              onClick={() => this.addProductToCart(product)}
+            >
+              Add To Cart
+            </button>
+            <button
+              type="button"
+              id="edit-product-button"
+            >
+              Edit Product
+            </button>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+        ) : (
+          <div id="all-products">
+          <video
           className="pp-video-player"
           src="https://hype.com/wp-content/uploads//2019/10/191029-MFP-Video-Website-No-sound-2560x1080-2-gradients-Compressed-30.mp4"
           autoplay=""
@@ -61,6 +110,8 @@ class AllProducts extends Component {
           </div>
         ))}
       </div>
+        )}
+  </div>
     );
   }
 }
