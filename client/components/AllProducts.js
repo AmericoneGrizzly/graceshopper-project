@@ -23,7 +23,7 @@ class AllProducts extends Component {
   render() {
     console.log("these are my props: ", this.props);
     return (
-      <div id="all-products">
+      <div className="products-list">
         <video
           className="pp-video-player"
           src="https://hype.com/wp-content/uploads//2019/10/191029-MFP-Video-Website-No-sound-2560x1080-2-gradients-Compressed-30.mp4"
