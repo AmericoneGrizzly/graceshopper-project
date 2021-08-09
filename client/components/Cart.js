@@ -24,10 +24,10 @@ class Cart extends Component {
   render() {
     console.log("these are my props: ", this.props);
     return (
-      <div>
-        <h1>This is the Cart component</h1>
+      <div className="your-cart">
         {this.props.cart && this.props.cart.length > 0 ? (
           <div>
+            <h1>Cart</h1>
             {this.props.cart.map((item) => (
               <div key={item.id}>
                 <Link to={`/items/${item.id}`}>
