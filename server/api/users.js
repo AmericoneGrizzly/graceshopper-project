@@ -1,13 +1,13 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
-  models: { User, Cart },
-} = require('../db');
+  models: { User, Cart, Order, Product },
+} = require("../db");
 module.exports = router;
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'username'],
+      attributes: ["id", "username"],
     });
     res.json(users);
   } catch (err) {
@@ -15,35 +15,69 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+//Add an order to the cart
+router.put("/:id", async (req, res, next) => {
   try {
-    const currentUser = await User.findByPk(req.params.id);
-    const productInCart = await Cart.findAll({
-      where: {
-        userId: req.params.id,
-        productId: req.body.product.id,
-      },
+    const puppies = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Order,
+          where: {
+            type: "active",
+          },
+          required: false,
+          include: [Product],
+        },
+      ],
     });
-    if (!productInCart.length) {
-      await currentUser.addProduct(req.body.product.id, {
-        through: { quantity: req.body.quantityChange },
-      });
+    console.log(`puppies`, puppies);
+    let currentOrder = {};
+    if (puppies.orders.length) {
+      currentOrder = puppies.orders[0];
+      //console.log(`currentOrder`, currentOrder);
     } else {
-      const newQuantity = productInCart[0].quantity + req.body.quantityChange;
-      await productInCart[0].update({
-        quantity: newQuantity,
-      });
+      currentOrder = await Order.create({ userId: puppies.id });
+      //console.log(`currentOrdernew`, currentOrder);
+    }
+    await currentOrder.incrementProduct(req.body.product.id, 1);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//get active order
+router.get("/:id", async (req, res, next) => {
+  try {
+    const currentUser = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Order,
+          where: {
+            type: "active",
+          },
+          include: [Product],
+        },
+      ],
+    });
+    console.log(`currentUser`, currentUser);
+    if (currentUser) {
+      res.send(await currentUser.orders[0].getProducts());
+    } else {
+      res.send();
     }
   } catch (err) {
     console.log(err);
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+//close active order
+router.get("/", async (req, res, next) => {
   try {
-    const currentUser = await User.findByPk(req.params.id);
-    res.send(await currentUser.getProducts());
+    const users = await User.findAll({
+      attributes: ["id", "username"],
+    });
+    res.json(users);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 });
