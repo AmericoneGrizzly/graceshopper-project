@@ -1,26 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-// import { fetchProducts } from "./store/allProductsReducer";
-import { getCartThunk, checkoutThunk } from "../store/cartReducer";
-
+import {
+  getCartThunk,
+  checkoutThunk,
+  updateCartThunk,
+} from "../store/cartReducer";
+//TODO add logic for handling zeros and stuff
 class Cart extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.addProductToCart = this.addProductToCart.bind(this);
-  // }
-
   componentDidMount() {
-    // fetch all products from db and setstate
-    //this.props.getProducts();
     this.props.getCart(this.props.user.id);
   }
-
-  // addProductToCart(product) {
-  //   console.log("product to be added: ", product);
-  //   this.props.updateCart(this.props.user, product, 1);
-  // }
-
   render() {
     console.log("these are my props: ", this.props);
     console.log(
@@ -43,14 +33,34 @@ class Cart extends Component {
             </button>
             {this.props.cart.products.map((item) => (
               <div key={item.id}>
-                <Link to={`/items/${item.id}`}>
+                <Link to={`/products/${item.id}`}>
                   <div>
                     <img src={item.imageURL} alt="picture of soda" />
                   </div>
                   <h3>{item.name}</h3>
-                  <h3>Qty: {item.cart.quantity}</h3>
-                  <h1>${item.price}</h1>
                 </Link>
+                <h3>Qty: {item.cart.quantity}</h3>
+                {item.cart.quantity > 1 && (
+                  <button
+                    id="less-quantity-button"
+                    type="button"
+                    onClick={() =>
+                      this.props.updateCart(this.props.user, item, -1)
+                    }
+                  >
+                    -
+                  </button>
+                )}{" "}
+                <button
+                  id="more-quantity-button"
+                  type="button"
+                  onClick={() =>
+                    this.props.updateCart(this.props.user, item, 1)
+                  }
+                >
+                  +
+                </button>
+                <h1>${item.price}</h1>
               </div>
             ))}
           </div>
@@ -71,8 +81,8 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   getCart: (userId) => dispatch(getCartThunk(userId)),
   checkoutThunk: (userId) => dispatch(checkoutThunk(userId)),
-  // updateCart: (user, product, quantityChange) =>
-  //   dispatch(updateCartThunk(user, product, quantityChange)),
+  updateCart: (user, product, quantityChange) =>
+    dispatch(updateCartThunk(user, product, quantityChange)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(Cart));

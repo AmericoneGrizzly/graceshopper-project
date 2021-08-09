@@ -30,11 +30,11 @@ export const getCartThunk = (id) => {
 export const updateCartThunk = (user, product, quantityChange) => {
   return async (dispatch) => {
     try {
-      const { data: updatedUser } = await axios.put(`/api/users/${user.id}`, {
+      const { data: updatedCart } = await axios.put(`/api/users/${user.id}`, {
         product: product,
         quantityChange: quantityChange,
       });
-      dispatch(updateCart(updatedUser));
+      dispatch(updateCart(updatedCart));
     } catch (e) {
       console.log(e);
     }
