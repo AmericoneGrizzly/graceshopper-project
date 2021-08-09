@@ -23,17 +23,32 @@ class AllProducts extends Component {
   render() {
     console.log("these are my props: ", this.props);
     return (
-      <div>
-        <h1>This is the AllProducts component</h1>
+      <div id="all-products">
+        <video
+          className="pp-video-player"
+          src="https://hype.com/wp-content/uploads//2019/10/191029-MFP-Video-Website-No-sound-2560x1080-2-gradients-Compressed-30.mp4"
+          autoplay=""
+          webkit-playsinline=""
+          playsinline=""
+          loop=""
+          muted="muted"
+          controlslist="nodownload"
+          poster=""
+          preload="none"
+        ></video>
         {this.props.products.map((product) => (
-          <div key={product.id}>
-            <Link to={`/products/${product.id}`}>
-              <div>
-                <img src={product.imageURL} alt="picture of soda" />
-              </div>
-              <h3>{product.name}</h3>
-              <h1>{product.price}</h1>
-            </Link>
+          <div key={product.id} className="single-product">
+            <div>
+              <Link to={`/products/${product.id}`}>
+                <img
+                  src={product.imageURL}
+                  alt="picture of soda"
+                  className="can-img"
+                />
+                <h3 className="product-name">{product.name}</h3>
+              </Link>
+            </div>
+            <h1>${product.price}</h1>
             {this.props.isLoggedIn && (
               <button
                 type="button"

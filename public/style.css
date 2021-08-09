@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 body {
   font-family: sans-serif;
+  background-color: white;
 }
 
 a {
@@ -18,4 +20,132 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+#nav-bar {
+  display: flex;
+  flex-wrap: wrap;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #2E2E3A;
+    z-index: 10;
+    border-bottom: 5px solid black;
+}
+
+.nav-text {
+  color: #F34213
+}
+
+.nav-text::after{
+  content: '';
+  width: 0%;
+  height:2px;
+  background: #F34213;
+  display:block;
+  margin: auto;
+  transition: 0.5s;
+  }
+
+  .nav-text:hover::after {
+    width:100%;
+  }
+
+.site-title {
+  position:relative;
+  color : #F34213;
+  background-color: black;
+  left: 35%;
+  top: 45px;
+  font-size: 45px;
+  padding:20px;
+  font-family: 'Permanent Marker';
+  font-weight: 400;
+  text-decoration: none;
+  /* border: 5px solid #F34213; */
+
+}
+
+#all-products {
+  position: absolute;
+  top: 80px;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#auth-form {
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  color: white;
+}
+
+nav {
+  position: absolute;
+  right: 0px;
+}
+
+.single-product {
+  flex: 0 0 30%;
+  padding: 20px;
+  background-color: transparent;
+  mix-blend-mode: multiply;
+  text-align: center;
+}
+
+.can-img {
+  height: 200px;
+  width: 200px;
+}
+
+.can-img:hover{
+  height: 225px;
+  width:225px;
+}
+
+.product-name{
+   color: #F34213;
+
+}
+
+.product-name::after{
+content: '';
+width: 0%;
+height:2px;
+background: #F34213;
+display:block;
+margin: auto;
+transition: 0.5s;
+}
+
+.product-name:hover::after {
+  width:50%;
+}
+
+a:visited {
+  color: #DE9151;
+}
+
+#all-products video {
+  width:100%;
+}
+
+#add-product-button:hover{
+  background-color: #F34213;
+  transition: 0.5s;
+}
+
+.single-product-view{
+  position: relative;
+  top:200px;
+  text-align: center;
+  mix-blend-mode: multiply;
+
+}
+
+.single-name{
+  color: #F34213;
 }
