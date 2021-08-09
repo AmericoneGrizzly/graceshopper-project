@@ -18,7 +18,7 @@ router.get("/", async (req, res, next) => {
 //Add an order to the cart
 router.put("/:id", async (req, res, next) => {
   try {
-    const puppies = await User.findByPk(req.params.id, {
+    const currentUser = await User.findByPk(req.params.id, {
       include: [
         {
           model: Order,
@@ -30,16 +30,14 @@ router.put("/:id", async (req, res, next) => {
         },
       ],
     });
-    console.log(`puppies`, puppies);
     let currentOrder = {};
-    if (puppies.orders.length) {
-      currentOrder = puppies.orders[0];
-      //console.log(`currentOrder`, currentOrder);
+    if (currentUser.orders.length) {
+      currentOrder = currentUser.orders[0];
     } else {
-      currentOrder = await Order.create({ userId: puppies.id });
-      //console.log(`currentOrdernew`, currentOrder);
+      currentOrder = await Order.create({ userId: currentUser.id });
     }
     await currentOrder.incrementProduct(req.body.product.id, 1);
+    res.send(currentOrder.getProducts());
   } catch (err) {
     console.log(err);
   }
@@ -71,13 +69,13 @@ router.get("/:id", async (req, res, next) => {
 });
 
 //close active order
-router.get("/", async (req, res, next) => {
-  try {
-    const users = await User.findAll({
-      attributes: ["id", "username"],
-    });
-    res.json(users);
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get("/", async (req, res, next) => {
+//   try {
+//     const users = await User.findAll({
+//       attributes: ["id", "username"],
+//     });
+//     res.json(users);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
