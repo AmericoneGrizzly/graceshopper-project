@@ -24,10 +24,13 @@ class Cart extends Component {
   render() {
     console.log("these are my props: ", this.props);
     return (
-      <div className="your-cart">
+      <div className="products-list">
         {this.props.cart && this.props.cart.length > 0 ? (
           <div>
             <h1>Cart</h1>
+            <button id="checkout-button" type="button">
+              Checkout
+            </button>
             {this.props.cart.map((item) => (
               <div key={item.id}>
                 <Link to={`/items/${item.id}`}>
@@ -42,7 +45,7 @@ class Cart extends Component {
             ))}
           </div>
         ) : (
-          <h1>No cart!</h1>
+          <h1>Nothing in your cart!</h1>
         )}
       </div>
     );

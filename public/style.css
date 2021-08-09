@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 body {
   font-family: sans-serif;
   background-color: lightgray;
@@ -25,50 +25,48 @@ form div {
 #nav-bar {
   display: flex;
   flex-wrap: wrap;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    background-color:#2E2E3A;
-    z-index: 10;
-    border-bottom: 5px solid black;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #2e2e3a;
+  z-index: 10;
+  border-bottom: 5px solid black;
 }
-
 
 .nav-text {
-  color: #F34213
+  color: #f34213;
 }
 
-.nav-text::after{
-  content: '';
+.nav-text::after {
+  content: "";
   width: 0%;
-  height:2px;
-  background: #F34213;
-  display:block;
+  height: 2px;
+  background: #f34213;
+  display: block;
   margin: auto;
   transition: 0.5s;
-  }
+}
 
-  .nav-text:hover::after {
-    width:100%;
-  }
+.nav-text:hover::after {
+  width: 100%;
+}
 
 .site-title {
-  position:relative;
-  color : #F34213;
+  position: relative;
+  color: #f34213;
   background-color: black;
   left: 35%;
   top: 45px;
   font-size: 45px;
-  padding:20px;
-  font-family: 'Permanent Marker';
+  padding: 20px;
+  font-family: "Permanent Marker";
   font-weight: 400;
   text-decoration: none;
   /* border: 5px solid #F34213; */
-
 }
 
-#all-products {
+.products-list {
   position: absolute;
   top: 200px;
   bottom: 0px;
@@ -102,61 +100,70 @@ nav {
   width: 200px;
 }
 
-.can-img:hover{
+.can-img:hover {
   height: 225px;
-  width:225px;
+  width: 225px;
 }
 
-.product-name{
-   color: #F34213;
-
+.product-name {
+  color: #f34213;
 }
 
-.product-name::after{
-content: '';
-width: 0%;
-height:2px;
-background: #F34213;
-display:block;
-margin: auto;
-transition: 0.5s;
-}
-
-.product-name:hover::after {
-  width:50%;
-}
-
-a:visited {
-  color: #DE9151;
-}
-
-#all-products video {
-  width:100%;
-}
-
-#add-product-button:hover{
-  background-color: #F34213;
+.product-name::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #f34213;
+  display: block;
+  margin: auto;
   transition: 0.5s;
 }
 
-.single-product-view{
-  position: relative;
-  top:200px;
-  text-align: center;
-  mix-blend-mode: multiply;
-
+.product-name:hover::after {
+  width: 50%;
 }
 
-.single-name{
-  color: #F34213;
+a:visited {
+  color: #de9151;
+}
+
+/* #all-products video {
+  width: 100%;
+} */
+
+#all-products {
+  position: absolute;
+  top: 85px;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#add-product-button:hover {
+  background-color: #f34213;
+  transition: 0.5s;
+}
+
+.single-product-view {
+  position: relative;
+  top: 200px;
+  text-align: center;
+  mix-blend-mode: multiply;
+}
+
+.single-name {
+  color: #f34213;
 }
 
 .your-cart {
   position: absolute;
   top: 200px;
+  display: flex;
+  width: 80vw;
 }
 
-.welcome{
+.welcome {
   position: absolute;
   top: 200px;
 }
@@ -168,4 +175,10 @@ form {
 
 label{
   margin: 8px;
+}
+  
+#checkout-button {
+  position: absolute;
+  right: 50px;
+  top: 50px;
 }
