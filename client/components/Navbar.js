@@ -13,10 +13,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/" className="nav-text">
             Home
           </Link>
-          <a href="#" onClick={handleClick}>
+          <a className="nav-text" href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link to="/cart">
+          <Link className="nav-text" to="/cart">
             <img src="https://www.elementvape.com/pub/static/version1628148755/frontend/Codazon/unlimited_elementvape/en_US/images/shopping-cart.svg" />
           </Link>
         </div>

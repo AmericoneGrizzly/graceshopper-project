@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 body {
   font-family: sans-serif;
-  background-color: #2E2E3A;
+  background-color: white;
 }
 
 a {
@@ -31,12 +31,26 @@ form div {
     width: 100%;
     background-color: #2E2E3A;
     z-index: 10;
-    border: 5px solid black;
+    border-bottom: 5px solid black;
 }
 
 .nav-text {
   color: #F34213
 }
+
+.nav-text::after{
+  content: '';
+  width: 0%;
+  height:2px;
+  background: #F34213;
+  display:block;
+  margin: auto;
+  transition: 0.5s;
+  }
+
+  .nav-text:hover::after {
+    width:100%;
+  }
 
 .site-title {
   position:relative;
@@ -77,15 +91,19 @@ nav {
 .single-product {
   flex: 0 0 30%;
   padding: 20px;
-  /* background-color: #2E2E3A; */
   background-color: transparent;
-  /* mix-blend-mode: overlay; */
+  mix-blend-mode: multiply;
   text-align: center;
 }
 
 .can-img {
   height: 200px;
   width: 200px;
+}
+
+.can-img:hover{
+  height: 225px;
+  width:225px;
 }
 
 .product-name{
@@ -97,7 +115,7 @@ nav {
 content: '';
 width: 0%;
 height:2px;
-background: white;
+background: #F34213;
 display:block;
 margin: auto;
 transition: 0.5s;
@@ -124,6 +142,8 @@ a:visited {
   position: relative;
   top:200px;
   text-align: center;
+  mix-blend-mode: multiply;
+
 }
 
 .single-name{
