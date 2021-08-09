@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 // import { fetchProducts } from "./store/allProductsReducer";
-import { getCartThunk } from "../store/cartReducer";
+import { getCartThunk, checkoutThunk } from "../store/cartReducer";
 
 class Cart extends Component {
   // constructor(props) {
@@ -23,15 +23,25 @@ class Cart extends Component {
 
   render() {
     console.log("these are my props: ", this.props);
+    console.log(
+      `this.props.cart.products.length`,
+      this.props.cart.products && this.props.cart.products.length
+    );
+    const orderMessage =
+      this.props.cart.type === "previous" ? "Order Confirmed!" : "Cart";
     return (
       <div className="products-list">
-        {this.props.cart && this.props.cart.length > 0 ? (
+        {this.props.cart.products && this.props.cart.products.length > 0 ? (
           <div>
-            <h1>Cart</h1>
-            <button id="checkout-button" type="button">
+            <h1>{orderMessage}</h1>
+            <button
+              id="checkout-button"
+              type="button"
+              onClick={() => this.props.checkoutThunk(this.props.user.id)}
+            >
               Checkout
             </button>
-            {this.props.cart.map((item) => (
+            {this.props.cart.products.map((item) => (
               <div key={item.id}>
                 <Link to={`/items/${item.id}`}>
                   <div>
@@ -59,7 +69,8 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  getCart: (id) => dispatch(getCartThunk(id)),
+  getCart: (userId) => dispatch(getCartThunk(userId)),
+  checkoutThunk: (userId) => dispatch(checkoutThunk(userId)),
   // updateCart: (user, product, quantityChange) =>
   //   dispatch(updateCartThunk(user, product, quantityChange)),
 });

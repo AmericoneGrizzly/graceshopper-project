@@ -4,6 +4,36 @@ const {
 } = require("../db");
 module.exports = router;
 
+//close order
+router.put("/:id/checkout", async (req, res, next) => {
+  try {
+    const currentUser = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Order,
+          where: {
+            type: "active",
+          },
+          required: false,
+          include: [Product],
+        },
+      ],
+    });
+
+    let currentOrder = {};
+    if (currentUser.orders.length) {
+      currentOrder = currentUser.orders[0];
+
+      await currentOrder.update({ type: "previous" });
+    } else {
+      throw new Error("Empty Cart");
+    }
+    res.send(currentOrder);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -31,13 +61,14 @@ router.put("/:id", async (req, res, next) => {
       ],
     });
     let currentOrder = {};
+
     if (currentUser.orders.length) {
       currentOrder = currentUser.orders[0];
     } else {
       currentOrder = await Order.create({ userId: currentUser.id });
     }
     await currentOrder.incrementProduct(req.body.product.id, 1);
-    res.send(currentOrder.getProducts());
+    res.send(currentOrder);
   } catch (err) {
     console.log(err);
   }
@@ -59,7 +90,7 @@ router.get("/:id", async (req, res, next) => {
     });
     console.log(`currentUser`, currentUser);
     if (currentUser) {
-      res.send(await currentUser.orders[0].getProducts());
+      res.send(await currentUser.orders[0]);
     } else {
       res.send();
     }
@@ -67,15 +98,3 @@ router.get("/:id", async (req, res, next) => {
     console.log(err);
   }
 });
-
-//close active order
-// router.get("/", async (req, res, next) => {
-//   try {
-//     const users = await User.findAll({
-//       attributes: ["id", "username"],
-//     });
-//     res.json(users);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
