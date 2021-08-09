@@ -25,7 +25,7 @@ class AllProducts extends Component {
     return (
       <div id="all-products">
         <video
-          class="pp-video-player"
+          className="pp-video-player"
           src="https://hype.com/wp-content/uploads//2019/10/191029-MFP-Video-Website-No-sound-2560x1080-2-gradients-Compressed-30.mp4"
           autoplay=""
           webkit-playsinline=""
@@ -45,7 +45,7 @@ class AllProducts extends Component {
                   alt="picture of soda"
                   className="can-img"
                 />
-                <h3>{product.name}</h3>
+                <h3 className="product-name">{product.name}</h3>
               </Link>
             </div>
             <h1>${product.price}</h1>
