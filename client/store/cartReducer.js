@@ -3,6 +3,7 @@ import axios from "axios";
 const UPDATE_CART = "UPDATE_CART";
 const GET_CART = "GET_CART";
 const CHECKOUT_CART = "CHECKOUT_CART";
+const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 
 const updateCart = (cart) => ({
   type: UPDATE_CART,
@@ -16,6 +17,11 @@ const checkoutCart = (previousOrder) => ({
   type: CHECKOUT_CART,
   previousOrder,
 });
+const removeProduct = (cart) => ({
+  type: REMOVE_PRODUCT,
+  cart,
+});
+
 export const getCartThunk = (id) => {
   return async (dispatch) => {
     try {
@@ -53,6 +59,21 @@ export const checkoutThunk = (id) => {
     }
   };
 };
+
+export const removeProductThunk = (user, product) => {
+  return async (dispatch) => {
+    try {
+      const { data: updatedCart } = await axios.put(`/api/users/${user.id}`, {
+        product: product,
+        quantityChange: 0,
+      });
+      dispatch(removeProduct(updatedCart));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
 export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case UPDATE_CART: {
@@ -63,6 +84,9 @@ export default function cartReducer(state = {}, action) {
     }
     case CHECKOUT_CART: {
       return action.previousOrder;
+    }
+    case REMOVE_PRODUCT: {
+      return action.cart;
     }
     default:
       return state;
