@@ -71,9 +71,12 @@ class Cart extends Component {
                 >
                   Remove
                 </button>
-                <h1>${displayPrice(item.price)}</h1>
+                <h1>Subtotal: ${displayPrice(item.price * item.cart.quantity)}</h1>
               </div>
             ))}
+            <div>
+              <h1 id="total-cost">Total: ${displayPrice(totalCost(this.props.cart.products.map((item) => (item.price * item.cart.quantity))))}</h1>
+            </div>
           </div>
         ) : (
           <h1>Nothing in your cart!</h1>
@@ -81,6 +84,14 @@ class Cart extends Component {
       </div>
     );
   }
+}
+
+function totalCost(array){
+  let total=0;
+  for(let item of array){
+    total += item
+  }
+  return total;
 }
 
 const mapState = (state) => ({
