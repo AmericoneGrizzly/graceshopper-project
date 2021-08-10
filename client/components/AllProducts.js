@@ -41,7 +41,7 @@ class AllProducts extends Component {
               autoplay=""
               webkit-playsinline=""
               playsinline=""
-              loop=""
+              loop="true"
               muted="muted"
               controlslist="nodownload"
               poster=""
