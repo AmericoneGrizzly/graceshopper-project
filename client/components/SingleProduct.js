@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { getSingleProduct } from "../store/allProductsReducer";
+import { updateCartThunk } from "../store/cartReducer";
+import { displayPrice } from "../utils";
 import EditProduct from "./EditProduct";
 
 class SingleProduct extends Component {
@@ -46,6 +48,17 @@ class SingleProduct extends Component {
             <h2>${this.props.product.price}</h2>
             <button id="add-product-button">Add To Cart</button>
           </div>
+          <h1 className="single-name">{this.props.product.name}</h1>
+          <h2>${displayPrice(this.props.product.price)}</h2>
+          <button
+            id="add-product-button"
+            onClick={() =>
+              this.props.updateCart(this.props.user, this.props.product, 1)
+            }
+          >
+            Add To Cart
+          </button>
+        </div>
         )}
       </div>
     );
@@ -60,6 +73,8 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   getSingleProduct: (id) => dispatch(getSingleProduct(id)),
+  updateCart: (user, product, quantityChange) =>
+    dispatch(updateCartThunk(user, product, quantityChange)),
   deleteProduct: (id) => dispatch(_deleteProduct(id, history)),
 });
 
