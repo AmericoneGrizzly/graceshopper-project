@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { fetchProducts } from "../store/allProductsReducer";
 import { updateCartThunk } from "../store/cartReducer";
+import { displayPrice } from "../utils";
 
 class AllProducts extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class AllProducts extends Component {
                     <h3 className="product-name">{product.name}</h3>
                   </Link>
                 </div>
-                <h1>${product.price}</h1>
+                <h1>${displayPrice(product.price)}</h1>
                 {this.props.isLoggedIn && (
                   <div className="Buttons">
                     <button

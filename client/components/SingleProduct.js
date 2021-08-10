@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getSingleProduct } from "../store/allProductsReducer";
 import { updateCartThunk } from "../store/cartReducer";
+import { displayPrice } from "../utils";
 
 class SingleProduct extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class SingleProduct extends Component {
             <img src={this.props.product.imageURL} alt="picture of soda" />
           </div>
           <h1 className="single-name">{this.props.product.name}</h1>
-          <h2>${this.props.product.price}</h2>
+          <h2>${displayPrice(this.props.product.price)}</h2>
           <button
             id="add-product-button"
             onClick={() =>

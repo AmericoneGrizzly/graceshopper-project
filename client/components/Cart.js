@@ -6,6 +6,8 @@ import {
   checkoutThunk,
   updateCartThunk,
 } from "../store/cartReducer";
+import { displayPrice } from "../utils";
+
 //TODO add logic for handling zeros and stuff
 class Cart extends Component {
   componentDidMount() {
@@ -16,6 +18,7 @@ class Cart extends Component {
 
     const orderMessage =
       this.props.cart.type === "previous" ? "Order Confirmed!" : "Cart";
+
     return (
       <div className="products-list">
         {this.props.cart.products && this.props.cart.products.length > 0 ? (
@@ -57,7 +60,7 @@ class Cart extends Component {
                 >
                   +
                 </button>
-                <h1>${item.price}</h1>
+                <h1>${displayPrice(item.price)}</h1>
               </div>
             ))}
           </div>
