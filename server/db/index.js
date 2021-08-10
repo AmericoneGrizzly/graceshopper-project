@@ -31,8 +31,12 @@ Order.prototype.incrementProduct = async function (productId, qty) {
       productId: productId,
     },
   });
-  let newQty = productInOrder ? carp[0].quantity + qty : qty;
-  await this.addProduct(productId, { through: { quantity: newQty } });
+  if(qty === 0){
+    await this.removeProduct(productId);
+  } else {
+    let newQty = productInOrder ? carp[0].quantity + qty : qty;
+    await this.addProduct(productId, { through: { quantity: newQty } });
+  }
 };
 User.hasMany(Order);
 Order.belongsTo(User);

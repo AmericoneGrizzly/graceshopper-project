@@ -12,7 +12,9 @@ export const Home = (props) => {
     <div className="welcome">
       <h3>Welcome, {username}</h3>
       <Link to={"/"}>
-        <button type="button">View Products</button>
+        <button className="auth-button" type="button">
+          View Products
+        </button>
       </Link>
     </div>
   );

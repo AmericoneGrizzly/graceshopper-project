@@ -5,6 +5,7 @@ import {
   getCartThunk,
   checkoutThunk,
   updateCartThunk,
+  removeProductThunk,
 } from "../store/cartReducer";
 import { displayPrice } from "../utils";
 
@@ -60,6 +61,16 @@ class Cart extends Component {
                 >
                   +
                 </button>
+                {" "}
+                <button
+                id="remove-product-button"
+                type="button"
+                onClick={() =>
+                  this.props.removeProduct(this.props.user, item)
+                }
+                >
+                  Remove
+                </button>
                 <h1>${displayPrice(item.price)}</h1>
               </div>
             ))}
@@ -83,6 +94,8 @@ const mapDispatch = (dispatch) => ({
   checkoutThunk: (userId) => dispatch(checkoutThunk(userId)),
   updateCart: (user, product, quantityChange) =>
     dispatch(updateCartThunk(user, product, quantityChange)),
+  removeProduct: (user, product) =>
+    dispatch(removeProductThunk(user, product)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(Cart));
