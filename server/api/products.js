@@ -31,19 +31,3 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
-
-// // router.post("/", async (req, res, next) => {
-//   const currentUser = User.findByPk(req.params.id);
-//   if (currentUser.role === "ADMINISTRATOR") {
-//     console.log(currentUser);
-//     try {
-//       const product = await Product.create(req.body);
-//       res.json(product);
-//     } catch (err) {
-//       next(err);
-//     }
-//   } else {
-//     // res.send("THIS FUNCTIONALITY IS RESERVED FOR ADMINISTRATORS");
-//     console.log("this functionality...");
-//   }
-// });

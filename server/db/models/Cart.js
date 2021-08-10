@@ -13,14 +13,6 @@ const Cart = db.define(
       defaultValue: 0,
     },
   }
-  // {
-  //   hooks: {
-  //     beforeUpdate() {
-  //       if(this.changed('purchased'))
-  //       // Do other stuff
-  //     },
-  //   },
-  // }
 );
 
 module.exports = Cart;

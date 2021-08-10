@@ -13,7 +13,6 @@ class EditProduct extends React.Component {
   }
 
   handleChange = (event) => {
-    console.log(this.state);
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -33,7 +32,6 @@ class EditProduct extends React.Component {
   };
 
   render() {
-    console.log("edit product", this.props);
     return (
       <div id="container">
         <br />

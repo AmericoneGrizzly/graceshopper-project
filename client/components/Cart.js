@@ -9,14 +9,11 @@ import {
 } from "../store/cartReducer";
 import { displayPrice } from "../utils";
 
-//TODO add logic for handling zeros and stuff
 class Cart extends Component {
   componentDidMount() {
     this.props.getCart(this.props.user.id);
   }
   render() {
-    console.log("these are my props: ", this.props);
-
     const orderMessage =
       this.props.cart.type === "previous" ? "Order Confirmed!" : "Cart";
 
