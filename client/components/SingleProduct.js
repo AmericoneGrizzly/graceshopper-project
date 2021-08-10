@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { getSingleProduct } from "../store/allProductsReducer";
+import { updateCartThunk } from "../store/cartReducer";
 
 class SingleProduct extends Component {
-  // constructor() {
-  //   super()
-  //   this.addToCart= this.addToCart.bind(this);
-  // }
   componentDidMount() {
     this.props.getSingleProduct(this.props.match.params.id);
     console.log("these are my single product props:", this.props);
@@ -22,7 +19,14 @@ class SingleProduct extends Component {
           </div>
           <h1 className="single-name">{this.props.product.name}</h1>
           <h2>${this.props.product.price}</h2>
-          <button id="add-product-button">Add To Cart</button>
+          <button
+            id="add-product-button"
+            onClick={() =>
+              this.props.updateCart(this.props.user, this.props.product, 1)
+            }
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     );
@@ -31,10 +35,13 @@ class SingleProduct extends Component {
 
 const mapState = (state) => ({
   product: state.allProductsReducer.singleProduct,
+  user: state.auth,
 });
 
 const mapDispatch = (dispatch) => ({
   getSingleProduct: (id) => dispatch(getSingleProduct(id)),
+  updateCart: (user, product, quantityChange) =>
+    dispatch(updateCartThunk(user, product, quantityChange)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProduct));
