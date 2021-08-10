@@ -149,6 +149,7 @@ a:visited {
 #all-products {
   position: absolute;
   top: 75px;
+  left: 0px;
   bottom: 0px;
   width: 100%;
   display: flex;
