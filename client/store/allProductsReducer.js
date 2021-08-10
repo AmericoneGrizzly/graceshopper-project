@@ -77,6 +77,7 @@ export const fetchProducts = () => {
 export const _createdProduct = (product, history) => {
   return async (dispatch) => {
     try {
+      //console.log(`product`, product);
       const { data } = await axios.post("/api/products", product);
       dispatch(createdProduct(data));
       history.push("/home");

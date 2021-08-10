@@ -20,7 +20,13 @@ class ProductForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.createProduct(this.state, this.props.history);
+    let stateToken = {
+      state: this.state,
+      token: localStorage.getItem("Token:"),
+    };
+    console.log(`stateToken`, stateToken);
+
+    this.props.createProduct(stateToken, this.props.history);
     this.setState({
       name: "",
       price: "",

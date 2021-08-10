@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { requireToken } = require("./utils");
 const {
   models: { User, Cart, Order, Product },
 } = require("../db");
@@ -46,7 +47,7 @@ router.get("/", async (req, res, next) => {
 });
 
 //Add an order to the cart
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", requireToken, async (req, res, next) => {
   try {
     const currentUser = await User.findByPk(req.params.id, {
       include: [
