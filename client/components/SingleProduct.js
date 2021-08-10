@@ -47,18 +47,17 @@ class SingleProduct extends Component {
             <h1 className="single-name">{this.props.product.name}</h1>
             <h2>${this.props.product.price}</h2>
             <button id="add-product-button">Add To Cart</button>
+            <h1 className="single-name">{this.props.product.name}</h1>
+            <h2>${displayPrice(this.props.product.price)}</h2>
+            <button
+              id="add-product-button"
+              onClick={() =>
+                this.props.updateCart(this.props.user, this.props.product, 1)
+              }
+            >
+              Add To Cart
+            </button>
           </div>
-          <h1 className="single-name">{this.props.product.name}</h1>
-          <h2>${displayPrice(this.props.product.price)}</h2>
-          <button
-            id="add-product-button"
-            onClick={() =>
-              this.props.updateCart(this.props.user, this.props.product, 1)
-            }
-          >
-            Add To Cart
-          </button>
-        </div>
         )}
       </div>
     );
