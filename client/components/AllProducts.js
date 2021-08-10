@@ -110,7 +110,7 @@ class AllProducts extends Component {
                     <h3 className="product-name">{product.name}</h3>
                   </Link>
                 </div>
-                <h1>${product.price}</h1>
+                <h1>${displayPrice(product.price)}</h1>
                 {this.props.isLoggedIn && (
                   <button
                     type="button"

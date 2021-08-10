@@ -214,3 +214,9 @@ label{
   right: 50px;
   top: 50px;
 }
+
+#total-cost {
+  position: absolute;
+  right: 50px;
+  color: #f34213;
+}
