@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { fetchProducts } from "../store/allProductsReducer";
+import { fetchProducts, _deleteProduct } from "../store/allProductsReducer";
 import { updateCartThunk } from "../store/cartReducer";
 import ProductForm from "./ProductForm";
 
@@ -9,6 +9,7 @@ class AllProducts extends Component {
   constructor(props) {
     super(props);
     this.addProductToCart = this.addProductToCart.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -19,6 +20,11 @@ class AllProducts extends Component {
   addProductToCart(product) {
     console.log("product to be added: ", product);
     this.props.updateCart(this.props.user, product, 1);
+  }
+
+  handleDelete(event) {
+    event.preventDefault();
+    this.props.deleteProduct(event.target.id);
   }
 
   render() {
@@ -54,7 +60,7 @@ class AllProducts extends Component {
                 </div>
                 <h1>${product.price}</h1>
                 {this.props.isLoggedIn && (
-                  <div className="Buttons">
+                  <div>
                     <button
                       type="button"
                       id="add-product-button"
@@ -62,14 +68,20 @@ class AllProducts extends Component {
                     >
                       Add To Cart
                     </button>
-                    <button type="button" id="edit-product-button">
-                      Edit Product
+                    <button
+                      type="button"
+                      id={product.id}
+                      onClick={this.handleDelete}
+                    >
+                      Delete Product
                     </button>
                   </div>
                 )}
               </div>
             ))}
-            <ProductForm history={this.props.history} />
+            <div id="product-form">
+              <ProductForm history={this.props.history} />
+            </div>
           </div>
         ) : (
           <div id="all-products">
@@ -126,6 +138,7 @@ const mapDispatch = (dispatch) => ({
   getProducts: () => dispatch(fetchProducts()),
   updateCart: (user, product, quantityChange) =>
     dispatch(updateCartThunk(user, product, quantityChange)),
+  deleteProduct: (id) => dispatch(_deleteProduct(id, history)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(AllProducts));

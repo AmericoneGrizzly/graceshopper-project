@@ -26,6 +26,7 @@ form div {
   display: flex;
   flex-wrap: wrap;
     position: fixed;
+    height: 70px;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -57,8 +58,8 @@ form div {
   position:relative;
   color : #F34213;
   background-color: black;
-  left: 35%;
-  top: 45px;
+  left: 33%;
+  top: -10px;
   font-size: 45px;
   padding:20px;
   font-family: 'Permanent Marker';
@@ -70,7 +71,8 @@ form div {
 
 #all-products {
   position: absolute;
-  top: 200px;
+  top: 70px;
+  left: 0px;
   bottom: 0px;
   width: 100%;
   display: flex;
@@ -81,13 +83,25 @@ form div {
   position: absolute;
   top: 200px;
   width: 100%;
-  color: white;
+  color: #F34213;
+  font-size: 25px;
+}
+
+.auth-button {
+  background-color: #F34213;
+  height: 35px;
+}
+
+.auth-button:hover {
+  background-color: #2E2E3A;
+  transition: 0.5s;
 }
 
 nav {
   position: absolute;
   right: 0px;
 }
+
 
 .single-product {
   flex: 0 0 30%;
@@ -103,8 +117,8 @@ nav {
 }
 
 .can-img:hover{
-  height: 225px;
-  width:225px;
+  height: 205px;
+  width: 205px;
 }
 
 .product-name{
@@ -159,6 +173,8 @@ a:visited {
 .welcome{
   position: absolute;
   top: 200px;
+  right: 43%;
+  text-align: center;
 }
 
 form {
@@ -168,4 +184,18 @@ form {
 
 label{
   margin: 8px;
+}
+
+#container{
+  position: relative;
+  padding: 60px;
+  bottom: 50px;
+}
+
+#edit-container{
+  position: relative;
+  padding:25px;
+  display: flex;
+  align-items: center;
+  flex-wrap: flex;
 }

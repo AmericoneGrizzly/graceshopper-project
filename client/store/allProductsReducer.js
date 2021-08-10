@@ -3,6 +3,8 @@ import axios from "axios";
 const SET_PRODUCTS = "SET_PRODUCTS";
 const SET_PRODUCT = "SET_PRODUCT";
 const CREATED_PRODUCT = "CREATED_PRODUCT";
+const UPDATED_PRODUCT = "UPDATED_PRODUCT";
+const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 const initialState = {
   products: [],
@@ -23,6 +25,32 @@ const createdProduct = (product) => ({
   type: CREATED_PRODUCT,
   product,
 });
+
+const updatedProduct = (product) => ({
+  type: UPDATED_PRODUCT,
+  product,
+});
+
+const deleteProduct = (product) => ({
+  type: DELETE_PRODUCT,
+  product,
+});
+
+export const _updatedProduct = (product, history) => {
+  return async (dispatch) => {
+    try {
+      console.log("update thunk product", product);
+      const { data: updated } = await axios.put(
+        `/api/products/${product.id}`,
+        product
+      );
+      dispatch(updatedProduct(updated));
+      history.push(`/products/${product.id}`);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 
 export const getSingleProduct = (id) => {
   return async (dispatch) => {
@@ -58,6 +86,20 @@ export const _createdProduct = (product, history) => {
   };
 };
 
+export const _deleteProduct = (productId, history) => {
+  return async (dispatch) => {
+    try {
+      const { data: deleted } = await axios.delete(
+        `/api/products/${productId}`
+      );
+      dispatch(deleteProduct(deleted));
+      history.push("/products");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
 export default function allProductsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_PRODUCTS: {
@@ -68,6 +110,18 @@ export default function allProductsReducer(state = initialState, action) {
     }
     case CREATED_PRODUCT: {
       return { ...state, products: [...products, action.product] };
+    }
+    case UPDATED_PRODUCT: {
+      let productos = state.products.map((product) =>
+        product.id === action.product.id ? action.product : product
+      );
+      return { ...state, products: productos };
+    }
+    case DELETE_PRODUCT: {
+      let productos = state.products.filter(
+        (product) => product.id !== action.robot.id
+      );
+      return { ...state, products: productos };
     }
     default:
       return state;

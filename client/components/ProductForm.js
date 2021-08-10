@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import history from "../history";
 import { _createdProduct } from "../store/allProductsReducer";
 
 class ProductForm extends React.Component {
