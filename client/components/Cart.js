@@ -13,10 +13,7 @@ class Cart extends Component {
   }
   render() {
     console.log("these are my props: ", this.props);
-    console.log(
-      `this.props.cart.products.length`,
-      this.props.cart.products && this.props.cart.products.length
-    );
+
     const orderMessage =
       this.props.cart.type === "previous" ? "Order Confirmed!" : "Cart";
     return (

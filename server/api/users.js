@@ -74,7 +74,6 @@ router.put("/:id", async (req, res, next) => {
     const updatedOrder = await Order.findByPk(currentOrder.dataValues.id, {
       include: [Product],
     });
-    console.log(`updateOrder`, updatedOrder);
 
     res.send(updatedOrder);
   } catch (err) {
@@ -96,7 +95,6 @@ router.get("/:id", async (req, res, next) => {
         },
       ],
     });
-    //console.log(`currentUser`, currentUser);
     if (currentUser) {
       res.send(await currentUser.orders[0]);
     } else {
