@@ -32,13 +32,7 @@ Order.prototype.incrementProduct = async function (productId, qty) {
     },
   });
   let newQty = productInOrder ? carp[0].quantity + qty : qty;
-
-  // console.log("found it");
-
-  this.addProduct(productId, { through: { quantity: newQty } });
-  // console.log(`this`, this);
-
-  // console.log(productList);
+  await this.addProduct(productId, { through: { quantity: newQty } });
 };
 User.hasMany(Order);
 Order.belongsTo(User);

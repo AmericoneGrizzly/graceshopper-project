@@ -67,8 +67,15 @@ router.put("/:id", async (req, res, next) => {
     } else {
       currentOrder = await Order.create({ userId: currentUser.id });
     }
-    await currentOrder.incrementProduct(req.body.product.id, 1);
-    res.send(currentOrder);
+    await currentOrder.incrementProduct(
+      req.body.product.id,
+      req.body.quantityChange
+    );
+    const updatedOrder = await Order.findByPk(currentOrder.dataValues.id, {
+      include: [Product],
+    });
+
+    res.send(updatedOrder);
   } catch (err) {
     console.log(err);
   }
@@ -88,7 +95,6 @@ router.get("/:id", async (req, res, next) => {
         },
       ],
     });
-    console.log(`currentUser`, currentUser);
     if (currentUser) {
       res.send(await currentUser.orders[0]);
     } else {
