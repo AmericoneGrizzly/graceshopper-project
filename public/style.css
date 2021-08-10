@@ -25,13 +25,14 @@ form div {
 #nav-bar {
   display: flex;
   flex-wrap: wrap;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  background-color: #2e2e3a;
-  z-index: 10;
-  border-bottom: 5px solid black;
+    position: fixed;
+    height: 70px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color:#2E2E3A;
+    z-index: 10;
+    border-bottom: 5px solid black;
 }
 
 .nav-text {
@@ -56,8 +57,8 @@ form div {
   position: relative;
   color: #f34213;
   background-color: black;
-  left: 35%;
-  top: 45px;
+  left: 33%;
+  top: -10px;
   font-size: 45px;
   padding: 20px;
   font-family: "Permanent Marker";
@@ -68,7 +69,8 @@ form div {
 
 .products-list {
   position: absolute;
-  top: 170px;
+  top: 70px;
+  left: 0px;
   bottom: 0px;
   width: 100%;
   display: flex;
@@ -79,13 +81,25 @@ form div {
   position: absolute;
   top: 200px;
   width: 100%;
-  color: white;
+  color: #F34213;
+  font-size: 25px;
+}
+
+.auth-button {
+  background-color: #F34213;
+  height: 35px;
+}
+
+.auth-button:hover {
+  background-color: #2E2E3A;
+  transition: 0.5s;
 }
 
 nav {
   position: absolute;
   right: 0px;
 }
+
 
 .single-product {
   flex: 0 0 30%;
@@ -100,9 +114,9 @@ nav {
   width: 200px;
 }
 
-.can-img:hover {
-  height: 225px;
-  width: 225px;
+.can-img:hover{
+  height: 205px;
+  width: 205px;
 }
 
 .product-name {
@@ -127,13 +141,14 @@ a:visited {
   color: #de9151;
 }
 
-/* #all-products video {
+#all-products video {
   width: 100%;
-} */
+  left: 0px;
+}
 
 #all-products {
   position: absolute;
-  top: 85px;
+  top: 75px;
   bottom: 0px;
   width: 100%;
   display: flex;
@@ -166,6 +181,31 @@ a:visited {
 .welcome {
   position: absolute;
   top: 200px;
+  right: 43%;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label{
+  margin: 8px;
+}
+
+#container{
+  position: relative;
+  padding: 60px;
+  bottom: 50px;
+}
+
+#edit-container{
+  position: relative;
+  padding:25px;
+  display: flex;
+  align-items: center;
+  flex-wrap: flex;
 }
 
 #checkout-button {

@@ -109,7 +109,7 @@ const Products = [
     quantity: 1000,
     category: "LOW_CALORIE",
     imageURL:
-      "https://target.scene7.com/is/image/Target/GUEST_764792f6-1375-4023-ab6e-9f1a4a8cce34?wid=488&hei=488&fmt=pjpeg&f=1&nofb=1",
+      "https://orderacme.s3.amazonaws.com/ProductImages/00815154022118.medium.jpg",
   },
   {
     name: "Coke Energy",
