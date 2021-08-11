@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getSingleProduct } from "../store/allProductsReducer";
-import { updateCartThunk } from "../store/cartReducer";
+import { updateCartThunk, _deleteProduct } from "../store/cartReducer";
 import { displayPrice } from "../utils";
 import EditProduct from "./EditProduct";
 
@@ -34,7 +34,14 @@ class SingleProduct extends Component {
               <h1 className="single-name">{this.props.product.name}</h1>
               <h2>${displayPrice(this.props.product.price)}</h2>
               <h3 id="lorem-ipsum">{this.props.product.description}</h3>
-              <button id="add-product-button">Add To Cart</button>
+              <button
+                id="add-product-button"
+                onClick={() =>
+                  this.props.updateCart(this.props.user, this.props.product, 1)
+                }
+              >
+                Add To Cart
+              </button>
               <div id="edit-container">
                 <EditProduct product={this.props.product} />
               </div>
