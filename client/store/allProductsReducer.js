@@ -77,7 +77,15 @@ export const fetchProducts = () => {
 export const _createdProduct = (product, history) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("/api/products", product);
+      const token = window.localStorage.getItem("token");
+
+      // console.log(`token`, token);
+      const { data } = await axios.post("/api/products", product, {
+        headers: {
+          authorization: token,
+        },
+      });
+
       dispatch(createdProduct(data));
       history.push("/home");
     } catch (e) {
