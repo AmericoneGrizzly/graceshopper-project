@@ -201,6 +201,10 @@ label{
   bottom: 50px;
 }
 
+#container h2{
+  text-align: left;
+}
+
 #edit-container{
   position: relative;
   padding:25px;
@@ -222,6 +226,5 @@ label{
 }
 
 #lorem-ipsum {
-  position: absolute;
   padding: 10px;
 }

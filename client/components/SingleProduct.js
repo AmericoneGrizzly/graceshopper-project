@@ -32,12 +32,12 @@ class SingleProduct extends Component {
                 <img src={this.props.product.imageURL} alt="picture of soda" />
               </div>
               <h1 className="single-name">{this.props.product.name}</h1>
-              <h2>${this.props.product.price}</h2>
+              <h2>${displayPrice(this.props.product.price)}</h2>
+              <h3 id="lorem-ipsum">{this.props.product.description}</h3>
               <button id="add-product-button">Add To Cart</button>
               <div id="edit-container">
                 <EditProduct product={this.props.product} />
               </div>
-              <h3 id="lorem-ipsum">{this.props.product.description}</h3>
             </div>
           </div>
         ) : (
@@ -47,6 +47,7 @@ class SingleProduct extends Component {
             </div>
             <h1 className="single-name">{this.props.product.name}</h1>
             <h2>${displayPrice(this.props.product.price)}</h2>
+            <h3 id="lorem-ipsum">{this.props.product.description}</h3>
             <button
               id="add-product-button"
               onClick={() =>
@@ -55,7 +56,6 @@ class SingleProduct extends Component {
             >
               Add To Cart
             </button>
-            <h3 id="lorem-ipsum">{this.props.product.description}</h3>
           </div>
         )}
       </div>
