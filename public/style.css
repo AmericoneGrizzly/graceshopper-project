@@ -228,3 +228,7 @@ label{
 #lorem-ipsum {
   padding: 10px;
 }
+
+cart img {
+  mix-blend-mode: multiply;
+}

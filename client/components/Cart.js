@@ -33,7 +33,11 @@ class Cart extends Component {
               <div key={item.id}>
                 <Link to={`/products/${item.id}`}>
                   <div>
-                    <img src={item.imageURL} alt="picture of soda" />
+                    <img
+                      className="single-product"
+                      src={item.imageURL}
+                      alt="picture of soda"
+                    />
                   </div>
                   <h3>{item.name}</h3>
                 </Link>
@@ -57,22 +61,32 @@ class Cart extends Component {
                   }
                 >
                   +
-                </button>
-                {" "}
+                </button>{" "}
                 <button
-                id="remove-product-button"
-                type="button"
-                onClick={() =>
-                  this.props.removeProduct(this.props.user, item)
-                }
+                  id="remove-product-button"
+                  type="button"
+                  onClick={() =>
+                    this.props.removeProduct(this.props.user, item)
+                  }
                 >
                   Remove
                 </button>
-                <h1>Subtotal: ${displayPrice(item.price * item.cart.quantity)}</h1>
+                <h1>
+                  Subtotal: ${displayPrice(item.price * item.cart.quantity)}
+                </h1>
               </div>
             ))}
             <div>
-              <h1 id="total-cost">Total: ${displayPrice(totalCost(this.props.cart.products.map((item) => (item.price * item.cart.quantity))))}</h1>
+              <h1 id="total-cost">
+                Total: $
+                {displayPrice(
+                  totalCost(
+                    this.props.cart.products.map(
+                      (item) => item.price * item.cart.quantity
+                    )
+                  )
+                )}
+              </h1>
             </div>
           </div>
         ) : (
@@ -83,10 +97,10 @@ class Cart extends Component {
   }
 }
 
-function totalCost(array){
-  let total=0;
-  for(let item of array){
-    total += item
+function totalCost(array) {
+  let total = 0;
+  for (let item of array) {
+    total += item;
   }
   return total;
 }
@@ -102,8 +116,7 @@ const mapDispatch = (dispatch) => ({
   checkoutThunk: (userId) => dispatch(checkoutThunk(userId)),
   updateCart: (user, product, quantityChange) =>
     dispatch(updateCartThunk(user, product, quantityChange)),
-  removeProduct: (user, product) =>
-    dispatch(removeProductThunk(user, product)),
+  removeProduct: (user, product) => dispatch(removeProductThunk(user, product)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(Cart));
