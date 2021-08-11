@@ -73,10 +73,19 @@ export const checkoutThunk = (id) => {
 export const removeProductThunk = (user, product) => {
   return async (dispatch) => {
     try {
-      const { data: updatedCart } = await axios.put(`/api/users/${user.id}`, {
-        product: product,
-        quantityChange: 0,
-      });
+      const token = window.localStorage.getItem("token");
+      const { data: updatedCart } = await axios.put(
+        `/api/users/${user.id}`,
+        {
+          product: product,
+          quantityChange: 0,
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
       dispatch(removeProduct(updatedCart));
     } catch (e) {
       console.log(e);

@@ -97,8 +97,15 @@ export const _createdProduct = (product, history) => {
 export const _deleteProduct = (productId, history) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem("token");
+
       const { data: deleted } = await axios.delete(
-        `/api/products/${productId}`
+        `/api/products/${productId}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
       dispatch(deleteProduct(deleted));
       history.push("/products");
