@@ -42,20 +42,6 @@ class Routes extends Component {
   }
 }
 
-// {
-/* <Route
-path="/robots/:id"
-render={(routeProps) => (
-  <Robot
-    robots={this.props.robots}
-    projects={this.props.projects}
-    id={routeProps.match.params.id * 1}
-    history={routeProps.history}
-  />
-)}
-/> */
-// }
-
 /**
  * CONTAINER
  */
@@ -75,6 +61,5 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
+// The `withRouter` wrapper makes sure that updates are not blocked when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes));

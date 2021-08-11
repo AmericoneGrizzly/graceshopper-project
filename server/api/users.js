@@ -76,8 +76,8 @@ router.put("/:id", async (req, res, next) => {
     });
 
     res.send(updatedOrder);
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e);
   }
 });
 
@@ -100,7 +100,7 @@ router.get("/:id", async (req, res, next) => {
     } else {
       res.send();
     }
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e);
   }
 });

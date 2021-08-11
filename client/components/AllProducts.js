@@ -19,7 +19,6 @@ class AllProducts extends Component {
   }
 
   addProductToCart(product) {
-    console.log("product to be added: ", product);
     this.props.updateCart(this.props.user, product, 1);
   }
 
@@ -29,7 +28,6 @@ class AllProducts extends Component {
   }
 
   render() {
-    console.log("these are my props: ", this.props);
     return (
       <div>
         {Object.keys(this.props.user).length &&
