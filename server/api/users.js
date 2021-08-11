@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { requireToken } = require("./utils");
+const { requireToken, isAdministrator } = require("./utils");
 const {
   models: { User, Cart, Order, Product },
 } = require("../db");
@@ -35,8 +35,13 @@ router.put("/:id/checkout", async (req, res, next) => {
   }
 });
 
-router.get("/", async (req, res, next) => {
+router.get("/", requireToken, isAdministrator, async (req, res, next) => {
   try {
+    // // console.log(req.user);
+    // if (req.user.role !== "ADMINISTRATOR") {
+    //   return res.status(403).send("you shall not pass!");
+    // }
+
     const users = await User.findAll({
       attributes: ["id", "username"],
     });
