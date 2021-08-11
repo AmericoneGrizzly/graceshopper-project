@@ -36,10 +36,20 @@ export const getCartThunk = (id) => {
 export const updateCartThunk = (user, product, quantityChange) => {
   return async (dispatch) => {
     try {
-      const { data: updatedCart } = await axios.put(`/api/users/${user.id}`, {
-        product: product,
-        quantityChange: quantityChange,
-      });
+      const token = window.localStorage.getItem("token");
+
+      const { data: updatedCart } = await axios.put(
+        `/api/users/${user.id}`,
+        {
+          product: product,
+          quantityChange: quantityChange,
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
       dispatch(updateCart(updatedCart));
     } catch (e) {
       console.log(e);
