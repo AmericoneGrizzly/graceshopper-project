@@ -35,13 +35,9 @@ router.put("/:id/checkout", async (req, res, next) => {
   }
 });
 
+// retrieve all users
 router.get("/", requireToken, isAdministrator, async (req, res, next) => {
   try {
-    // // console.log(req.user);
-    // if (req.user.role !== "ADMINISTRATOR") {
-    //   return res.status(403).send("you shall not pass!");
-    // }
-
     const users = await User.findAll({
       attributes: ["id", "username"],
     });
@@ -52,7 +48,7 @@ router.get("/", requireToken, isAdministrator, async (req, res, next) => {
 });
 
 //Add an order to the cart
-router.put("/:id", requireToken, async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const currentUser = await User.findByPk(req.params.id, {
       include: [
