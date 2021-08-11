@@ -37,6 +37,7 @@ class SingleProduct extends Component {
               <div id="edit-container">
                 <EditProduct product={this.props.product} />
               </div>
+              <h3 id="lorem-ipsum">{this.props.product.description}</h3>
             </div>
           </div>
         ) : (
@@ -54,6 +55,7 @@ class SingleProduct extends Component {
             >
               Add To Cart
             </button>
+            <h3 id="lorem-ipsum">{this.props.product.description}</h3>
           </div>
         )}
       </div>

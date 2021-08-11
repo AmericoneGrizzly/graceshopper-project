@@ -220,3 +220,8 @@ label{
   right: 50px;
   color: #f34213;
 }
+
+#lorem-ipsum {
+  position: absolute;
+  padding: 10px;
+}
